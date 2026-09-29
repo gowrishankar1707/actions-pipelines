@@ -1,0 +1,16 @@
+name: give notekeeper a CI pipeline
+on: [push, pull_request]      
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get the Code
+        uses: actions/checkout@v4
+      - name: install python
+        uses: actions/setup-python@v5      
+        with:
+          cache: pip
+      - name: Installing dependencies
+        run: pip install -r requirements.txt
+      - name: Run tests
+        run: python3 -m pytest
